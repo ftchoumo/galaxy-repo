@@ -1,0 +1,13 @@
+---
+# tasks file for httpd
+- name: install httpd 
+  apt:
+    name: apache2
+    state: latest
+  notify: restart apache2
+- name: copying files
+  copy:
+    src: index.html
+    dest: "{{ dest }}/index.html"
+    mode: 0766
+  notify: restart apache2
